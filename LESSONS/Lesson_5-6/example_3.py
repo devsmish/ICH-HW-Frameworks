@@ -21,16 +21,17 @@ Base.prepare()
 
 # Теперь можно использовать классы, автоматически созданные из таблиц
 Address = Base.classes.address
+City = Base.classes.city
 Session = sessionmaker(bind=engine)
 
-
-
 with Session() as session:
-    address = session.query(Address).first()
-    address.phone = '123'
-    session.commit()
+    city = session.query(City).first()
+    print(city.address)
+    # address.phone = '123'
+    # session.commit()
 
-    time.sleep(15)
-
-    address.phone = ''
-    session.commit()
+# time.sleep(10)
+# session.add(address)
+# address.phone = ''
+# session.commit()  # новое подключение к базе данных
+# session.close()
