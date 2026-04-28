@@ -69,7 +69,7 @@ def data_validator(data):
         user = User.model_validate_json(data, strict=True)
         return user.model_dump_json()
     except ValidationError as err:
-        print("Validation error:", err.json())
+        return err.json()
     # except ValueError as err:
     #     print("ValueError error:", err)
 
