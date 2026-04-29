@@ -51,9 +51,9 @@ class Address(BaseModel):
 
 class User(BaseModel):
     name: str = Field(pattern=r'^[a-zA-Zа-яА-Я -]+$', min_length=2, description='Only letters and min 2 characters')
-    age: int = Field(..., gt=0, le=120, description='Between 0 and 120')
+    age: int = Field(gt=0, le=120, description='Between 0 and 120')
     email: EmailStr = Field(description='Email address format')
-    is_employed: bool = Field(...)
+    is_employed: bool
     address: Address
 
 
