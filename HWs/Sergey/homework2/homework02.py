@@ -51,9 +51,9 @@ class Address(BaseModel):
 
 class User(BaseModel):
     name: str = Field(pattern=r'^[a-zA-Zа-яА-Я -]+$', min_length=2, description='Only letters and min 2 characters')
-    age: int = Field(gt=0, le=120, description='Between 0 and 120')
+    age: int = Field(..., gt=0, le=120, description='Between 0 and 120')
     email: EmailStr = Field(description='Email address format')
-    is_employed: bool
+    is_employed: bool = Field(...)
     address: Address
 
 
@@ -69,7 +69,7 @@ def data_validator(data):
         user = User.model_validate_json(data, strict=True)
         return user.model_dump_json()
     except ValidationError as err:
-        print("Validation error:", err.json())
+        return err.json()
     # except ValueError as err:
     #     print("ValueError error:", err)
 
